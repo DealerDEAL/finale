@@ -1,0 +1,107 @@
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+#include<stdio.h>
+
+using namespace std;
+
+int balanse1, balanse_1=4000, balanse_2=2000, balanse2, tratesum_1, tratesum_2, tratesum_3, tratesum_4, tratesum_5, tratesum_6, tratesum_7, tratesum_8, tratesum_9, tratesum1_1, tratesum2_1, tratesum3_1, trate1=500.0, trate2=700.0, trate3=900.0, x_1, x_2, x_3, trate1a=200, trate2s=600, trate3d=400;
+double x, trate1_1, trate2_1, trate3_1, x2, x3, xs, xd, xa,xz,xx,xc, trate1_2, trate2_2, trate3_2;
+int main ()
+
+{
+    cout<<"веди пополнение 1 баланса ";
+    cin>>balanse1;
+    balanse_1=balanse1+balanse_1;
+    ofstream out;
+    out.open("balanse1.txt");
+    if (out.is_open())
+    {
+        out <<balanse1<< std::endl;
+    }
+    out.close(); 
+    cout<<"веди траты 1 категории ";
+    cin>>trate1_1;
+    cout<<"веди траты 2 категории ";
+    cin>>trate2_1;
+    cout<<"веди траты 3 категории ";
+    cin>>trate3_1;
+    out.open("trate1.txt");
+    if (out.is_open())
+    {
+        out <<trate1_1<<" трата 1\n"<<trate2_1<<" трата 2\n"<<trate3_1<<" трата 3\n"<< std::endl;
+    }
+    out.close();
+    x=(trate1_1+0.0)/(trate3_1+trate2_1+trate1_1);
+    tratesum_1=x*100;
+    x2=(trate2_1+0.0)/(trate3_1+trate2_1+trate1_1);
+    tratesum_2=x2*100;
+    x3=(trate3_1+0.0)/(trate3_1+trate2_1+trate1_1);
+    tratesum_3=x3*100;
+    out.open("trate1.txt", ios::app);
+    if (out.is_open())
+    {
+        out <<tratesum_1<<" процент общей мес 1 \n"<<tratesum_2<<" процент общей мес 2\n"<<tratesum_3<<" процент общей мес 3\n"<< std::endl;
+    }
+    out.close();
+    xa=(trate1_1+0.0)/(trate1+trate2+trate3);
+    tratesum1_1=xa*100;
+    xs=(trate2_1+0.0)/(trate1+trate2+trate3);
+    tratesum2_1=xs*100;
+    xd=(trate3_1+0.0)/(trate1+trate2+trate3);
+    tratesum3_1=xd*100;
+    out.open("trate1.txt", ios::app);
+    if (out.is_open())
+    {
+        out <<tratesum3_1<<" процент общей 1 \n"<<tratesum2_1<<" процент общей 2\n"<<tratesum3_1<<" процент общей 3\n"<< std::endl;
+    }
+    out.close();
+    cout<<"веди пополнение 2 баланса ";
+    cin>>balanse2;
+    balanse_2=balanse2+balanse_2;
+    out.open("balanse2.txt");
+    if (out.is_open())
+    {
+        out <<balanse2<< std::endl;
+    }
+    out.close();
+    cout<<"веди траты 1 категории ";
+    cin>>trate1_2;
+    cout<<"веди траты 2 категории ";
+    cin>>trate2_2;
+    cout<<"веди траты 3 категории ";
+    cin>>trate3_2;
+    out.open("trate2.txt");
+    if (out.is_open())
+    {
+        out <<trate1_2<<" трата 1\n"<<trate2_2<<" трата 2\n"<<trate3_2<<" трата 3\n"<< std::endl;
+    }
+    out.close();
+    xz=(trate1_2+0.0)/(trate3_2+trate2_2+trate1_2);
+    tratesum_4=xz*100;
+    xx=(trate2_2+0.0)/(trate3_2+trate2_2+trate1_2);
+    tratesum_5=xx*100;
+    xc=(trate3_2+0.0)/(trate3_2+trate2_2+trate1_2);
+    tratesum_6=xc*100;
+    out.open("trate2.txt", ios::app);
+    if (out.is_open())
+    {
+        out <<tratesum_4<<" процент общей мес 1 \n"<<tratesum_5<<" процент общей мес 2\n"<<tratesum_6<<" процент общей мес 3\n"<< std::endl;
+    }
+    out.close();
+    xz=(trate1_2+0.0)/(trate1a+trate2s+trate3d);
+    tratesum_7=xz*100;
+    xx=(trate2_2+0.0)/(trate1a+trate2s+trate3d);
+    tratesum_8=xx*100;
+    xc=(trate3_2+0.0)/(trate1a+trate2s+trate3d);
+    tratesum_9=xc*100;
+    out.open("trate2.txt", ios::app);
+    if (out.is_open())
+    {
+        out <<tratesum_7<<" процент общей 1 \n"<<tratesum_8<<" процент общей 2\n"<<tratesum_9<<" процент общей 3\n"<< std::endl;
+    }
+    out.close();
+    cout<<"balanse 1 = "<<balanse_1<<"\n";
+    cout<<"balanse 2 = "<<balanse_2<<"\n";
+    return 0;
+}
