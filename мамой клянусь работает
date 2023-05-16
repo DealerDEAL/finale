@@ -33,15 +33,22 @@ class Consuption{
         this->id = id;
     }
 };
-    
-int n1, n2, i, s, b=1, v;
+ofstream out;
+int n1, n2, i, s, b=1, v, p, p2;
 double x;
 int main ()
 {
-    int p;
-    cout<<"пополнить баlанс 1 на сумму: ";
+
+    cout<<"пополнить баланс 1 на сумму: ";
     cin>>p;
-    cout<<p<<"\n";
+    out.open("пополнение.txt");
+    if (out.is_open())
+    {
+        out<<"пополнение 1 баланса = "<<p<<"\n";
+    }
+    out.close();
+    
+    
     cout << "ведите количество месецов трат для 1 баланса но неболше 12\n";
     cin >> n1;
     if(n1>12){
@@ -68,7 +75,6 @@ int main ()
         
     }
     
-    ofstream out;
     out.open("траты 1 баланса.txt");
     if (out.is_open())
     {
@@ -95,12 +101,19 @@ int main ()
     }
     out.close();
     p=p-*balanse;
-    cout<<p<<"\n";
+    
     
     int p2;
     cout<<"попольнить 2 баланс на: ";
-    cin>>p2;
-    cout<<p2<<"\n";
+    cin>>p2;;
+    
+    out.open("пополнение.txt", ios_base::app);
+    if (out.is_open())
+    {
+        out<<"пополнение 2 баланса = "<<p2;
+    }
+    out.close();
+    
     cout << "ведите  количество месецов трат для 2 баланса но неболше 12\n";
     cin >> n2;
     if(n2>12){
@@ -112,7 +125,7 @@ int main ()
     int* balanse2 = (int*)calloc(b, sizeof(int));
     
     for(i=1; i<b+1; i++){
-    cout<<"введите общие траты 2 категории трат "<<"но не больше"<<p2<<"= ";
+    cout<<"введите общие траты 2 категории трат "<<"но не больше "<<p2<<" = ";
     cin>> balanse2[i-1];
     };
     
@@ -154,16 +167,24 @@ int main ()
     }
     out.close();
     p2=p2-*balanse2;
-    cout<<p2;
     
+    out.open("расчёт баланса.txt");
+    if (out.is_open())
+    {
+        out<<"баланс 1 = "<<p<<"\n";
+        out<<"баланс 2 = "<<p2<<"\n";
+    }
     
+    out.open("процент всех трат.txt");
+    if (out.is_open())
+    {
     double balanse_overal=p+p2+0.0;
     int balanse_overal_percent[2];
     balanse_overal_percent[0]=p/balanse_overal*100;
     balanse_overal_percent[1]=p2/balanse_overal*100;
-    cout<<"\n"<<balanse_overal_percent[0];
-    cout<<"\n"<<balanse_overal_percent[1];
-  
+    out<<"траты 1 баланса = "<<balanse_overal_percent[0]<<"\n";
+    out<<"траты 2 баланса = "<<balanse_overal_percent[1]<<"\n";
+    }
     
     
     
