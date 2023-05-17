@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
-#include <stdio.h>
 using namespace std;
 
 class Balance {
@@ -13,7 +12,7 @@ class Balance {
 };
 
     
-class User{
+/*class User{
     public:
     string name;
     int id, balance;
@@ -32,19 +31,21 @@ class Consuption{
         this->sum = sum;
         this->id = id;
     }
-};
+};*/
 ofstream out;
-int n1, n2, i, s, b=1, v, p, p2;
-double x;
+int n1, n2, i, s, b=1; //p, p2;
+double x, v;
 int main ()
 {
-
+    
+    Balance *p = new Balance(0);
+    Balance *p2 = new Balance(0);
     cout<<"пополнить баланс 1 на сумму: ";
-    cin>>p;
+    cin>> p->balance;
     out.open("пополнение.txt");
     if (out.is_open())
     {
-        out<<"пополнение 1 баланса = "<<p<<"\n";
+        out<<"пополнение 1 баланса = "<<p->balance<<"\n";
     }
     out.close();
     
@@ -59,7 +60,7 @@ int main ()
     int* balanse = (int*)calloc(b, sizeof(int));
     
     for(i=1; i<b+1; i++){
-    cout<<"введите общие траты 1 категории трат "<<"но не больше "<<p<<" = ";
+    cout<<"введите общие траты 1 категории трат "<<"но не больше "<<p->balance<<" = ";
     cin>> balanse[i-1];
     };
     
@@ -100,17 +101,17 @@ int main ()
             }
     }
     out.close();
-    p=p-*balanse;
+    p->balance=p->balance - *balanse;
     
     
-    int p2;
+   // int p2;
     cout<<"попольнить 2 баланс на: ";
-    cin>>p2;;
+    cin>>p2->balance;
     
     out.open("пополнение.txt", ios_base::app);
     if (out.is_open())
     {
-        out<<"пополнение 2 баланса = "<<p2;
+        out<<"пополнение 2 баланса = "<<p2->balance;
     }
     out.close();
     
@@ -125,7 +126,7 @@ int main ()
     int* balanse2 = (int*)calloc(b, sizeof(int));
     
     for(i=1; i<b+1; i++){
-    cout<<"введите общие траты 2 категории трат "<<"но не больше "<<p2<<" = ";
+    cout<<"введите общие траты 2 категории трат "<<"но не больше "<<p2->balance<<" = ";
     cin>> balanse2[i-1];
     };
     
@@ -166,25 +167,39 @@ int main ()
             }
     }
     out.close();
-    p2=p2-*balanse2;
+    p2->balance=p2->balance - *balanse2;
     
     out.open("расчёт баланса.txt");
     if (out.is_open())
     {
-        out<<"баланс 1 = "<<p<<"\n";
-        out<<"баланс 2 = "<<p2<<"\n";
+        out<<"баланс 1 = "<<p->balance<<"\n";
+        out<<"баланс 2 = "<<p2->balance<<"\n";
     }
+    out.close();
     
-    out.open("процент всех трат.txt");
+    out.open("процент котегорий отнасительно всего баланса.txt");
     if (out.is_open())
     {
-    double balanse_overal=p+p2+0.0;
-    int balanse_overal_percent[2];
-    balanse_overal_percent[0]=p/balanse_overal*100;
-    balanse_overal_percent[1]=p2/balanse_overal*100;
-    out<<"траты 1 баланса = "<<balanse_overal_percent[0]<<"\n";
-    out<<"траты 2 баланса = "<<balanse_overal_percent[1]<<"\n";
+    double balanse_overal=p->balance + p2->balance +0.0;
+    double balanse_overal_percent[2];
+    balanse_overal_percent[0]=(p->balance / balanse_overal) * 100;
+    balanse_overal_percent[1]=(p2->balance / balanse_overal) * 100;
+    out<<"1 баланс = "<<balanse_overal_percent[0]<<"\n";
+    out<<"2 баланс = "<<balanse_overal_percent[1]<<"\n";
     }
+    out.close();
+    
+    out.open("процент каждой категории трат относительно всех трат.txt");
+    if (out.is_open())
+    {
+    double consuption_overal= *balanse2 + *balanse + 0.0;
+    double consuption_overal_percent[2];
+    consuption_overal_percent[0]=(*balanse / consuption_overal) * 100;
+    consuption_overal_percent[1]=(*balanse2 / consuption_overal) * 100;
+    out<<"категория 1 = "<<consuption_overal_percent[0]<<"\n";
+    out<<"категория 2 = "<<consuption_overal_percent[1]<<"\n";
+    }
+    out.close();
     
     
     
